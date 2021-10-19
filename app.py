@@ -8,10 +8,10 @@ app = Flask(__name__)
 # Identificar Rutas.
 
 @app.route("/")
-def hello_world():
+def index():
     return render_template("/index.html", User = 'Anonymous')
 
-@app.route("/")
+@app.route("/consultarProd")
 def registros():
     pdts = controller.obtener_reg()
     return render_template("/consultaProductos.html",
