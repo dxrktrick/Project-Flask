@@ -6,6 +6,8 @@
 	box-sizing: border-box;
 }
 
+/* Estilos de Cuerpo */
+
 body {
 	background:url(4.jpg);
 	background-repeat:no-repeat;
@@ -53,6 +55,8 @@ article h2, article h3, article p, article hr {
 	margin-bottom: 15px;
 }
 
+/* Estilos de Botones */
+
 .btn{
     text-decoration: none;
     padding: 10px;
@@ -73,4 +77,21 @@ article h2, article h3, article p, article hr {
 .vinculo {
 	text-decoration: none;
 	color:#156;
+}
+
+/* Estilos de Tabla */
+
+table {
+	width: 100%;
+	margin:20px 0;
+	background-color: #d6d2c4;
+    text-align: center;
+	border-collapse: collapse;
+}
+
+tbody tr td {
+	height: 60px;
+	background:rgba(248, 248, 248, 0.9);
+	border-bottom: solid 5px #156;
+	color: black;
 }

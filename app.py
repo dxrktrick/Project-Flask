@@ -24,7 +24,10 @@ app.run()
 # | Carreola A. Gustavo.
 # | Sistemas Gestores De Bases De Datos.
 
-#Actualizar entorno de aplicación
-#venv\Scripts\activate
-#set FLASK_APP=app
-#FLASK run
+#    C o m a n d o s  d e  F l a s k
+# -- Acceder al entorno de la App.
+#    venv\Scripts\activate
+# -- Actualizar entorno de aplicación
+#    set FLASK_APP=app
+# -- Correr App
+#    flask run
