@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello_world():
     return render_template("/index.html", User = 'Anonymous')
 
-@app.route("/")
+@app.route("/consultaProductos")
 def registros():
     pdts = controller.obtener_reg()
     return render_template("/consultaProductos.html",
