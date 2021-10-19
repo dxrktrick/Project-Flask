@@ -8,7 +8,7 @@ app = Flask(__name__)
 # Identificar Rutas.
 
 @app.route("/")
-def hello_world():
+def index():
     return render_template("/index.html", User = 'Anonymous')
 
 @app.route("/consultaProductos")
@@ -22,4 +22,4 @@ app.run()
 
 # | Vázquez D. J. Eric.
 # | Carreola A. Gustavo.
-# | Sistemas Gestores De Bases De Datos
+# | Sistemas Gestores De Bases De Datos.
