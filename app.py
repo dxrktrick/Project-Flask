@@ -22,4 +22,9 @@ app.run()
 
 # | Vázquez D. J. Eric.
 # | Carreola A. Gustavo.
-# | Sistemas Gestores De Bases De Datos
+# | Sistemas Gestores De Bases De Datos.
+
+#Actualizar entorno de aplicación
+#venv\Scripts\activate
+#set FLASK_APP=app
+#FLASK run
