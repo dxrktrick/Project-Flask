@@ -14,7 +14,7 @@ def index():
 @app.route("/consultarProd")
 def registros():
     pdts = controller.obtener_reg()
-    return render_template("/consultaProductos.html",
+    return render_template("/consultarProductos.html",
                 text = 'Registros Completos',
                 registros = pdts)
 
