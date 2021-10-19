@@ -52,3 +52,25 @@ article p {
 article h2, article h3, article p, article hr {
 	margin-bottom: 15px;
 }
+
+.btn{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 10px;
+    color: #ffffff;
+    background-color: rgba(77, 89, 92, 0.87);
+    border-radius: 6px;
+    box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+	border: 2px solid #156;
+}
+
+.btn:hover {
+    color: rgba(24,8,33,.9);
+    background-color: rgba(217,228,221,.9);
+}
+
+.vinculo {
+	text-decoration: none;
+	color:#156;
+}
