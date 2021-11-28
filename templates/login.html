@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso WP</title>
+    <link rel="shortcut icon" type="{{url_for('static', filename='img/favicon.png')}}" href="{{url_for('static', filename='img/favicon.png')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/estilos2.css')}}">
+</head>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    <div class="signup_linkV2"> {{msg}} </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<body>
+    <div class="center">
+    <h1>Acceso WikiPartners</h1>
+    <form method="POST" action="{{url_for('check')}}">
+        <div class="txt_field">
+            <input type="text" name="email" required>
+            <span></span>
+            <label for="email">Escribe tu correo..</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" name="password" required>
+            <span></span>
+            <label for="password">Escribe tu contraseña..</label>
+        </div>
+            <!-- <div class="signup_link"><a href="#">¿Olvidaste la contraseña?</a></div> -->
+            <input type="submit" value="Login">
+            <div class="signup_link"> ¿No tienes cuenta? <a href="{{url_for('register')}}">Registrate</a></div>
+    </form>
+    </div>
+</body>
+</html>

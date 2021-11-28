@@ -1,0 +1,41 @@
+/* -- HEADER -- */
+.selector-for-some-widget {
+	box-sizing: content-box;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+/* -- POST -- */
+.main {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.post {
+	padding-bottom:20px;
+	margin-bottom:20px;
+	border-bottom:1px solid #999;
+}
+
+.post .post-title a {
+	color:rgb(197, 38, 38);
+}
+
+.post .thumb {
+	margin-right:10px;
+    margin-left:10px;
+	width:40%;
+}
+
+.post .thumb img {
+    margin:10px;
+	width:80%;
+}
+
+.post .contenedor-botones {
+	width: 100%;
+}
+
+/* Formulario Validacion */

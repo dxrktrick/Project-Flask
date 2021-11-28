@@ -1,0 +1,18 @@
+# | Vázquez D. J. Eric.
+# | Carreola A. Gustavo.
+# | Sistemas Gestores De Bases De Datos.
+
+#    C o m a n d o s  d e  F l a s k
+# -- Crear App de Desarrollo
+#    py -3 -m venv venv
+# -- Acceder al entorno de la App.
+#    venv\Scripts\activate
+# -- Actualizar entorno de aplicación
+#    $env:FLASK_APP = "app"
+# -- Correr App
+#    flask run
+
+# -- url_for('nombreFuncion')
+
+# -- C o m a n d o s  d e  G i t
+# -- 

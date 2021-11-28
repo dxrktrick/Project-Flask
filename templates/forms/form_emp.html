@@ -1,0 +1,61 @@
+	{% extends "layout.html" %}
+	{% block content %}
+
+        <section class="main container-fluid">
+            <div class="row g-2">
+                <div class="col-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{url_for('employees')}}">{{type}}</a></li>
+                        <li class="breadcrumb-item">Registros de {{type}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">Formulario de Nuevo Registro</li>
+                    </ol>
+                </nav>
+                </div>
+            </div>
+
+            <div class="row g-2">
+                <div class="col-12">
+                <div class="jumbotron">
+                    <p class="lead">Formulario de Nuevo Registro en {{type}}.</p>
+                    <hr class="my-3">
+                    <form action="{{url_for('addEmployee')}}" method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" placeholder="Escribe el nombre.." required autofocus>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" class="form-control" name="apellido" placeholder="Escribe el apellido" required autofocus>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="edad">Edad</label>
+                                <input type="number" min="1" max="100" class="form-control" name="edad" placeholder="Escribe la edad.." required autofocus>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="estado">Estado</label>
+                                <input type="text" class="form-control" name="estado" placeholder="Escribe el estado.." required autofocus>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="tel">Telefono</label>
+                                <input type="number" pattern="[0-9]{10}" class="form-control" name="tel" placeholder="Escribe el telefono.." required autofocus>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email">Correo</label>
+                                <input type="email" class="form-control" name="email" placeholder="Escribe el correo.." required autofocus>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Escribe la contraseña.." required autofocus>
+                            </div>
+                        </div>
+                        <button id="submit" type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-info">Resetar</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </section>
+
+    {% endblock %}

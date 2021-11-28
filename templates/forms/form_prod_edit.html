@@ -1,0 +1,79 @@
+	{% extends "layout.html" %}
+	{% block content %}
+
+        <section class="main container-fluid">
+            <div class="row g-2">
+                <div class="col-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{url_for('product')}}">{{type}}</a></li>
+                        <li class="breadcrumb-item">Registros de {{type}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">Formulario de Edición de Registro</li>
+                    </ol>
+                </nav>
+                </div>
+            </div>
+
+            <div class="row g-2">
+                <div class="col-12">
+                <div class="jumbotron">
+                    <p class="lead">Formulario de Edición de Registro en Empleado.</p>
+                    <hr class="my-3">
+                    <form action="/actualizar{{type}}/{{producto.0}}" method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" value="{{producto.3}}" class="form-control" name="nombre" placeholder="Escribe el nombre.." required autofocus>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" value="{{producto.5}}" class="form-control" name="cantidad" placeholder="cantidad" required autofocus>
+                            </div>
+                            <div class="input-group mb-3 col-md-6">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="categoria">Categorias</label>
+                                </div>
+                                
+                                <select class="custom-select" name="categoria">
+                                    {% for i in exp1 %}
+                                    <option value={{i.0}}>{{i.1}}</option>
+                                    {% endfor %}
+                                </select>
+                                
+                            </div>
+                            <div class="input-group mb-3 col-md-6">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="proveedor">Proveedores</label>
+                                </div>
+                                <select class="custom-select" name="proveedor">
+                                    {% for j in exp2 %}
+                                    <option value={{j.0}}>{{j.1}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-group mb-3 col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                                <span class="input-group-text">00.00</span>
+                            </div>
+                            <input type="text" value="{{producto.4}}" class="form-control" name="precio" placeholder="Escribe precio.." required autofocus>
+                            </div>
+                            <div class="input-group mb-3 col-md-6">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="existencia">Existencia</label>
+                                </div>
+                                <select class="custom-select" name="existencia">
+                                    <option value=0>Sin Existencia</option>
+                                    <option value=1>En Existencia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="submit" type="submit" class="btn btn-success">Actualizar</button>
+                        <button type="reset" class="btn btn-info">Resetar</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </section>
+
+    {% endblock %}

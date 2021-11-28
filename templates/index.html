@@ -1,13 +1,74 @@
-{% extends "/template.html" %}
-{% block content %}
+	{% extends "layout.html" %}
+	{% block content %}
 
-		<article>
-			<h2>¿Qué acciones deseas hacer?</h2>
-			<h3>Administración | Usuario -{{User}}-</h3>
-			<hr>
-				<article class="cube">
-					<a href="/consultarProd" class="btn">Consultar Productos</a>
-				</article>
-		</article>
+        <section class="main container-fluid">
+            <div class="row g-2">
+                <div class="col-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">Inicio</li>
+                            <li class="breadcrumb-item active" aria-current="page">Página Principal</li>
+                        </ol>
+                    </nav>
+                </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="col-6">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Sesión {{ms}} - </strong> {{msg}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            </div>
+            
+                        
 
-{% endblock %}
+            <div class="row g-2">
+                <div class="col-6">
+                <div class="jumbotron">
+                    <h1 class="display-4">Información Principal</h1>
+                    <p class="lead">Noviembre, 2021 / WikiPartners</p>
+                    <hr class="my-4">
+                    <p class="lead">Bienvenido a la página principal.</p>
+                    <hr class="my-4">
+                    <p class=" my-4 post-contenido text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="lead">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{url_for('help')}}" role="button">Leer más</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="col-6">
+                <div class="jumbotron">
+                    <h1 class="display-4">Información Principal</h1>
+                    <p class="lead">Noviembre, 2021 / WikiPartners</p>
+                    <hr class="my-4">
+                    <p class="lead">Bienvenido a la página principal.</p>
+                    <hr class="my-4">
+                    <p class=" my-4 post-contenido text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="lead">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{url_for('help')}}" role="button">Leer más</a>
+                    </p>
+                </div>
+            </div>
+            </div>
+        </section>
+	{% endblock %}
