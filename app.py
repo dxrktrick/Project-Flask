@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, url_for, redirect, session, flash
 from flask_bcrypt import Bcrypt
 from connection import obtener_conexion
+import datetime
 import models
-from datetime import datetime
 
 # Modelo de Vista-Controlador -------------------------------------------------.
 #Instancia de app.
@@ -38,10 +38,11 @@ def login():
     return render_template("/login.html")
 
 loginIndex = -1
+cualUsuario = 0
 
 @app.route("/verificar", methods=["POST"])
 def check():
-    global loginIndex
+    global loginIndex, cualUsuario
     if request.method == "POST":
         checkIn = models.registros_emp()
         email = request.form['email']
@@ -53,6 +54,7 @@ def check():
             if email == checks[7] and password == checks[6]:
                 loginIndex = i
                 session['user'] = checks[1]
+                cualUsuario = checks[0]
                 signed = True
             i += 1
         if not signed:
@@ -108,18 +110,29 @@ def client():
     return render_template("/types/client.html", valores = cliente, type = tx)
 
 #Sistema de ventas ------------------------------------------------------------.
-@app.route("/venta")
-def sale():
-    tx = "Venta"
-    return render_template("/types/sale.html", type = tx)
-
+ventaMsg = 'Venta'
 item = 0
 canasta = []
+data1 = []
+totalPago = 0.0
+registros = ''
+    #Fecha -----
+x = datetime.datetime.now()
+dateNow = str(x.strftime('%x'))
+dateNow.replace('/','-')
+print(dateNow)
+    #------------
+
+@app.route("/venta")
+def sale():
+    global ventaMsg
+    return render_template("/types/sale.html", datos = canasta, tp = totalPago, type = ventaMsg)
 
 @app.route("/busqCanasta", methods=['GET', 'POST'])
 def searchData():
-    global canasta, item
-    tx = "Venta"
+    global ventaMsg, canasta, cualUsuario, registros, data1, item, totalPago
+    valorTamFactura = models.tam_fact()
+    registros = '100000' + str(valorTamFactura[0][0] + 1)
     if request.method == 'POST':
         if int(request.form['accion']) == 1:
             code = request.form['codCli']
@@ -127,29 +140,69 @@ def searchData():
             if len(data1) == 0:
                 print('No existe registro')
                 data1 = [[0, 'x', 'y']]
-                return render_template("/types/sale.html", inf1 = data1[0], type = tx)
-            return render_template("/types/sale.html", inf1 = data1[0], type = tx)
+                return render_template("/types/sale.html", numFact = registros, inf1 = data1[0], datos = canasta, tp = totalPago, type = ventaMsg)
+            return render_template("/types/sale.html", numFact = registros, inf1 = data1[0], datos = canasta, tp = totalPago, type = ventaMsg)
         if int(request.form['accion']) == 2:
             code = request.form['codProd']
             data2 = models.buscar_reg_prod(code)
             if len(data2) == 0:
                 print('No existe registro')
                 data2 = [[0, 'x', 'y', 'z']]
-                return render_template("/types/sale.html",  inf2 = data2[0], type = tx)
-            return render_template("/types/sale.html", inf2 = data2[0], type = tx)
+                return render_template("/types/sale.html", numFact = registros, inf1 = data1[0],  inf2 = data2[0], datos = canasta, tp = totalPago, type = ventaMsg)
+            return render_template("/types/sale.html", numFact = registros, inf1 = data1[0], inf2 = data2[0], datos = canasta, tp = totalPago, type = ventaMsg)
         if int(request.form['accion']) == 3:
             item += item
-            code = int(request.form['codProd'])
+            code = request.form['codigo']
             desc = request.form['infoProd']
             print(request.form['precio'])
             prace = float(request.form['precio'])
             cant = int(request.form['cantidad'])
             subt = prace * cant
-            lista = [code, desc, prace, cant, subt]
+            
+            lista = [item, code, desc, prace, cant, subt]
+            print(lista)
+            diccionario = {}
+            diccionario[lista[1]] = 1
+            i = 0
+            for productoLista in canasta:
+                diccionario [productoLista[1]] = diccionario.get(productoLista[1],0)+1
+                if diccionario[productoLista[1]] >= 2:
+                    lista[4] += productoLista[4]
+                    canasta.pop(i)
+                    break
+                i += 1
             canasta.append(lista)
+            i = 0
+            while i < len(canasta):
+                canasta[i][0] = i + 1
+                i += 1
             print(canasta)
-            return render_template("/types/sale.html", datos = canasta, type = tx)
+            
+            totalPago = 0
+            for articulo in canasta:
+                totalPago += articulo[5]
+            
+            return render_template("/types/sale.html", numFact = registros, inf1 = data1[0], tp = totalPago,  datos = canasta, type = ventaMsg)
 
+@app.route("/terminarVenta")
+def cashout():
+    global canasta, cualUsuario, registros, data1, totalPago
+    df1 = data1[0][0] #Id del cliente
+    df2 = cualUsuario #Id del empleado
+    df3 = registros #Numero de Factura
+    df4 = dateNow #Fecha
+    df5 = totalPago #Total de pago
+    df6 = 1 #Factura valida
+    print(df1, df2, df3, df4, df5, df6)
+    models.insertar_reg_fact(df4, df3, df2, df1, df5, df6)
+    for articulo in canasta:
+        r1 = registros
+        r2 = articulo[2]
+        r3 = articulo[4]
+        r4 = articulo[5]
+        models.insertar_reg_detalle(r1, r2, r3, r4)
+    return url_for('sale')
+            
 @app.route("/factura")
 def invoice():
     return render_template("/types/invoice.html")

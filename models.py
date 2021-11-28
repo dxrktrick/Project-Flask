@@ -3,6 +3,36 @@ from connection import obtener_conexion
 #Consultas extraordinarias.
 
 #Consultas de Base de Datos
+
+#Consultas de ventas.
+def tam_fact():
+    conexion = obtener_conexion()
+    cur = conexion.cursor()
+    cur.execute("SELECT count('') FROM factura")
+    reg = cur.fetchall()
+    return reg
+
+def buscar_fact():
+    conexion = obtener_conexion()
+    cur = conexion.cursor()
+    cur.execute("SELECT max(id_factura) FROM factura")
+    reg = cur.fetchall()
+    return reg
+
+def insertar_reg_fact(a, b, c, d, e, f):
+    conexion = obtener_conexion()
+    cur = conexion.cursor()
+    cur.execute("INSERT into factura (fecha, serie, empleado, cliente, monto, existencia) values (?, ?, ?, ?, ?, ?)", (a, int(b), c, d, e, f))
+    reg = cur.fetchall()
+    return reg
+
+def insertar_reg_detalle(a, b, c, d):
+    conexion = obtener_conexion()
+    cur = conexion.cursor()
+    cur.execute("INSERT into detalleVenta (factura, producto, cantidad, precioVenta) values (?, ?, ?, ?)", (a, b, c, d))
+    reg = cur.fetchall()
+    return reg
+
 #Consultas de registros.
 def registros_emp():
     conexion = obtener_conexion()

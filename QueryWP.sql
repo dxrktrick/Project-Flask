@@ -68,6 +68,8 @@ CONSTRAINT fk_producto FOREIGN KEY (producto) REFERENCES producto (id_producto)
 );
 
 select * from producto
+select count('') from producto
+select count('') from detalleVenta
 select * from categoria
 select * from empleado
 
@@ -75,6 +77,9 @@ insert into empleado (nombre, apellido_p, edad, estado, telefono, pass, email) v
 insert into empleado (nombre, apellido_p, edad, estado, telefono, pass, email) values ('Eric', 'Vazquez', 22, 'Mexico', 7121630599, 'eric123')
 
 insert into producto (categoria, proveedor, nombre, precio, cantidad, existencia) values (1, 1, 'Nokia', 1200.35, 3, 1)
+
+insert into factura (fecha, serie, empleado, cliente, monto, existencia) values (getdate(), 100001, 1, 1, 1234, 1)
+
 
 alter table empleado ADD email varchar(80)
 

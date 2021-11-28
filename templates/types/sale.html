@@ -26,26 +26,35 @@
                                         <button class="btn btn-outline-secondary" type="submit" name="accion" value="1" id="buscarcliente">Buscar</button>
                                     </div>
                                     <div class="input-group mb-3 col-md-6">
+                                        
                                         <input type="text" class="form-control" name="infoCliente" {%if inf1 %} value="{{inf1.1}} {{inf1.2}}" {%endif%} placeholder="Inf. de cliente." aria-label="Información de Cliente." disabled>
                                     </div>
                                     <p class="card-text col-md-12">Información de Producto a Añadir</p>
-                                    <div class="input-group mb-3 col-md-6">
-                                        <input type="text" class="form-control" name="codProd" placeholder="Escribe el código." aria-label="Código de producto." aria-describedby="buscarProducto">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control col-md-4" name="codProd" placeholder="Escribe el código." aria-label="Código de producto." aria-describedby="buscarProducto">
                                         <button class="btn btn-outline-secondary" type="submit" name="accion" value="2" id="buscarProducto">Buscar</button>
                                     </div>
                                     <div class="input-group mb-3 col-md-6">
-                                        <input type="text" class="form-control" name="infoProd" {% if inf2 %} value="{{inf2.3}}" {% endif %} placeholder="Información de producto." aria-label="Información de producto." disabled>
+                                        <span class="input-group-text">Código</span>
+                                        {% if inf2 %} {% set v0 = inf2.0 %}  {% endif %}
+                                        <input type="number" class="form-control" name="codigo" value="{{v0}}" placeholder="Información de producto." aria-label="Información de producto." readonly>
+                                    </div>
+                                    <div class="input-group mb-3 col-md-6">
+                                        {% if inf2 %} {% set v3 = inf2.3 %}  {% endif %}
+                                        <input type="text" class="form-control" name="infoProd" value="{{v3}}" placeholder="Información de producto." aria-label="Información de producto." readonly>
                                     </div>
                                     <div class="input-group mb-3 col-md-6">
                                         <span class="input-group-text">$</span>
-                                        <input type="text" name="precio" placeholder="Precio de producto." {% if inf2 %} value="{{inf2.4}}" {%endif%} class="form-control" aria-label="precio" disabled>
+                                        {% if inf2 %} {% set v4 = inf2.4 %}  {% endif %}
+                                        <input type="text" name="precio" placeholder="Precio de producto." value="{{v4}}" class="form-control" aria-label="precio" readonly>
                                     </div> 
                                     <div class="input-group mb-3 col-md-3">
                                         <span class="input-group-text">C</span>
                                         <input type="number" class="form-control" value="1" name="cantidad" placeholder="0" aria-label="Escribe cantidad." required autofocus>
                                     </div>
                                     <div class="input-group mb-3 col-md-3">
-                                        <input type="number" class="form-control" name="stock" {% if inf2 %} value="{{inf2.5}}" {% endif %} placeholder="Stock" aria-label="Stock" disabled>
+                                        {% if inf2 %} {% set v5 = inf2.5 %}  {% endif %}
+                                        <input type="number" class="form-control" name="stock" value="{{v5}}" placeholder="Stock" aria-label="Stock" readonly>
                                     </div>                          
                                 </div>
                                 <button type="submit" name="accion" value="3" id="enviarDatos" class="btn btn-sm btn-outline-success">Registrar</button>
@@ -60,8 +69,12 @@
                         <div class="card-body">
                             <div class="row g-2">
                                 <div class="input-group input-group-sm mb-3 col-md-4">
-                                    <span class="input-group-text" id="basic-addon1">N.</span>
-                                    <input type="text" class="form-control" placeholder="Código." aria-label="Código." aria-describedby="Search">
+                                    <span class="input-group-text" id="basic-addon1">#</span>
+                                    <input type="text" value='{{numFact}}' class="form-control" placeholder="Código de Factura." aria-label="Código de Factura" aria-describedby="Código de Factura." readonly>
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-md-4">
+                                    <span class="input-group-text" id="basic-addon1">$</span>
+                                    <input type="text" value="{{tp}}" class="form-control" placeholder="Subtotal." aria-label="Subtotal" aria-describedby="Subtotal" readonly>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -95,8 +108,8 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            <a class="btn btn-sm btn-outline-success" href="#" role="button">Cashout</a>
-                            <a class="btn btn-sm btn-outline-danger" href="#" role="button">Cancell</a>
+                                <a href="{{url_for('cashout')}}" class="btn btn-sm btn-outline-success">Cashout</a>
+                                <button class="btn btn-sm btn-outline-danger" href="#" role="button">Cancell</button>
                         </div>
                     </div>
                 </div>
