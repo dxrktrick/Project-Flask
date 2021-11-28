@@ -111,35 +111,44 @@ def client():
 @app.route("/venta")
 def sale():
     tx = "Venta"
-    data1 = [[]]
-    data2 = [[]]
-    return render_template("/types/sale.html", inf2 = data2[0], type = tx)
+    return render_template("/types/sale.html", type = tx)
+
+item = 0
+canasta = []
 
 @app.route("/busqCanasta", methods=['GET', 'POST'])
 def searchData():
-    global loginIndex
+    global canasta, item
+    tx = "Venta"
     if request.method == 'POST':
-        if int(request.form['buscar']) == 1:
+        if int(request.form['accion']) == 1:
             code = request.form['codCli']
             data1 = models.buscar_reg_cli(code)
-            data2 = [[]]
             if len(data1) == 0:
                 print('No existe registro')
                 data1 = [[0, 'x', 'y']]
-                data2 = [[]]
-                return render_template("/types/sale.html", inf1 = data1[0], inf2 = data2[0])
-            return render_template("/types/sale.html", inf1 = data1[0], inf2 = data2[0])
-        if int(request.form['buscar']) == 2:
+                return render_template("/types/sale.html", inf1 = data1[0], type = tx)
+            return render_template("/types/sale.html", inf1 = data1[0], type = tx)
+        if int(request.form['accion']) == 2:
             code = request.form['codProd']
-            data1 = [[]]
             data2 = models.buscar_reg_prod(code)
             if len(data2) == 0:
                 print('No existe registro')
-                data1 = [[]]
                 data2 = [[0, 'x', 'y', 'z']]
-                return render_template("/types/sale.html", inf1 = data1[0], inf2 = data2[0])
-            return render_template("/types/sale.html", inf1 = data1[0], inf2 = data2[0])
-        
+                return render_template("/types/sale.html",  inf2 = data2[0], type = tx)
+            return render_template("/types/sale.html", inf2 = data2[0], type = tx)
+        if int(request.form['accion']) == 3:
+            item += item
+            code = int(request.form['codProd'])
+            desc = request.form['infoProd']
+            print(request.form['precio'])
+            prace = float(request.form['precio'])
+            cant = int(request.form['cantidad'])
+            subt = prace * cant
+            lista = [code, desc, prace, cant, subt]
+            canasta.append(lista)
+            print(canasta)
+            return render_template("/types/sale.html", datos = canasta, type = tx)
 
 @app.route("/factura")
 def invoice():

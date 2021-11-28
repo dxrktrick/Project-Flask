@@ -23,32 +23,33 @@
                                     <p class="card-text col-md-12">Información de Cliente</p>
                                     <div class="input-group mb-3 col-md-6">
                                         <input type="text" class="form-control" name="codCli" placeholder="Código.." aria-label="Código de cliente." aria-describedby="buscarCliente">
-                                        <button class="btn btn-outline-secondary" type="submit" name="buscar" value="1" id="buscarcliente">Buscar</button>
+                                        <button class="btn btn-outline-secondary" type="submit" name="accion" value="1" id="buscarcliente">Buscar</button>
                                     </div>
                                     <div class="input-group mb-3 col-md-6">
-                                        <input type="text" class="form-control" name="infoCliente" value="{{inf1.1}} {{inf1.2}}" placeholder="Inf. de cliente." aria-label="Información de Cliente." disabled>
+                                        <input type="text" class="form-control" name="infoCliente" {%if inf1 %} value="{{inf1.1}} {{inf1.2}}" {%endif%} placeholder="Inf. de cliente." aria-label="Información de Cliente." disabled>
                                     </div>
                                     <p class="card-text col-md-12">Información de Producto a Añadir</p>
                                     <div class="input-group mb-3 col-md-6">
                                         <input type="text" class="form-control" name="codProd" placeholder="Escribe el código." aria-label="Código de producto." aria-describedby="buscarProducto">
-                                        <button class="btn btn-outline-secondary" type="submit" name="buscar" value="2" id="buscarProducto">Buscar</button>
+                                        <button class="btn btn-outline-secondary" type="submit" name="accion" value="2" id="buscarProducto">Buscar</button>
                                     </div>
                                     <div class="input-group mb-3 col-md-6">
-                                        <input type="text" class="form-control" name="infoProd" value="{{inf2.3}}" placeholder="Información de producto." aria-label="Información de producto.">
+                                        <input type="text" class="form-control" name="infoProd" {% if inf2 %} value="{{inf2.3}}" {% endif %} placeholder="Información de producto." aria-label="Información de producto." disabled>
                                     </div>
                                     <div class="input-group mb-3 col-md-6">
                                         <span class="input-group-text">$</span>
-                                        <input type="text"  nanme="precio" placeholder="Precio de producto."  value="{{inf2.4}}" class="form-control" aria-label="precio">
+                                        <input type="text" name="precio" placeholder="Precio de producto." {% if inf2 %} value="{{inf2.4}}" {%endif%} class="form-control" aria-label="precio" disabled>
                                     </div> 
                                     <div class="input-group mb-3 col-md-3">
-                                        <input type="text" class="form-control" name="" placeholder="" aria-label="">
+                                        <span class="input-group-text">C</span>
+                                        <input type="number" class="form-control" value="1" name="cantidad" placeholder="0" aria-label="Escribe cantidad." required autofocus>
                                     </div>
                                     <div class="input-group mb-3 col-md-3">
-                                        <input type="number" class="form-control" name="stock" value="{{inf2.5}}" placeholder="Stock" aria-label="Stock" disabled>
+                                        <input type="number" class="form-control" name="stock" {% if inf2 %} value="{{inf2.5}}" {% endif %} placeholder="Stock" aria-label="Stock" disabled>
                                     </div>                          
                                 </div>
-                                <a id="submit" type="submit" class="btn btn-success">Registrar</a>
-                                <a type="reset" class="btn btn-info">Resetar</a>
+                                <a type="submit" name="accion" value="3" class="btn btn-sm btn-outline-success">Registrar</a>
+                                <a type="reset" name="reset" value="0" class="btn btn-sm btn-outline-info">Resetar</a>
                             </form>
                         </div>
                     </div>
@@ -77,16 +78,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for dato in datos %}
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>a</td>
-                                            <td>s</td>
-                                            <td>d</td>
-                                            <td>f</td>
-                                            <td>g</td>
-                                            <td>h</td>
-                                            <td>j</td>
+                                            <td>{{dato.0}}</td>
+                                            <td>{{dato.1}}</td>
+                                            <td>{{dato.2}}</td>
+                                            <td>{{dato.3}}</td>
+                                            <td>{{dato.4}}</td>
+                                            <td>{{dato.5}}</td>
+                                            <td><a class="alert-link" href="#">Editar</a></td>
+                                            <td><a class="alert-link" href="#">Eliminar</a></td>
                                         </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
