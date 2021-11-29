@@ -23,15 +23,26 @@ def insertar_reg_fact(a, b, c, d, e, f):
     conexion = obtener_conexion()
     cur = conexion.cursor()
     cur.execute("INSERT into factura (fecha, serie, empleado, cliente, monto, existencia) values (?, ?, ?, ?, ?, ?)", (a, int(b), c, d, e, f))
-    reg = cur.fetchall()
-    return reg
+    conexion.commit()
 
 def insertar_reg_detalle(a, b, c, d):
     conexion = obtener_conexion()
     cur = conexion.cursor()
     cur.execute("INSERT into detalleVenta (factura, producto, cantidad, precioVenta) values (?, ?, ?, ?)", (a, b, c, d))
+    conexion.commit()
+
+def buscar_prod_nombre(n):
+    conexion = obtener_conexion()
+    cur = conexion.cursor()
+    cur.execute("SELECT * FROM producto WHERE nombre = ?", n)
     reg = cur.fetchall()
     return reg
+
+def actualizarStock(i, a):
+    conexion = obtener_conexion()
+    cur = conexion.cursor()
+    cur.execute("UPDATE producto set cantidad = ? where id_producto = {0}".format(i), (a))
+    conexion.commit()
 
 #Consultas de registros.
 def registros_emp():

@@ -55,6 +55,8 @@ def check():
                 loginIndex = i
                 session['user'] = checks[1]
                 cualUsuario = checks[0]
+                print(checks)
+                print(cualUsuario)
                 signed = True
             i += 1
         if not signed:
@@ -122,6 +124,7 @@ dateNow = str(x.strftime('%x'))
 dateNow.replace('/','-')
 print(dateNow)
     #------------
+print(cualUsuario)
 
 @app.route("/venta")
 def sale():
@@ -187,6 +190,13 @@ def searchData():
 @app.route("/terminarVenta")
 def cashout():
     global canasta, cualUsuario, registros, data1, totalPago
+    for articulo in canasta:
+        cantidad = articulo[4]
+        idproducto = int(articulo[1])
+        rs = models.buscar_reg_prod(idproducto)
+        stockAct = int(rs[0][5]) - int(cantidad)
+        models.actualizarStock(idproducto, stockAct)
+        
     df1 = data1[0][0] #Id del cliente
     df2 = cualUsuario #Id del empleado
     df3 = registros #Numero de Factura
@@ -195,13 +205,19 @@ def cashout():
     df6 = 1 #Factura valida
     print(df1, df2, df3, df4, df5, df6)
     models.insertar_reg_fact(df4, df3, df2, df1, df5, df6)
+    print(canasta)
+    numVenta = models.buscar_fact()
     for articulo in canasta:
-        r1 = registros
-        r2 = articulo[2]
+        r1 = numVenta[0][0]
+        reg2 = models.buscar_prod_nombre(articulo[2])
+        r2 = reg2[0][0]
         r3 = articulo[4]
         r4 = articulo[5]
+        print(r1, r2, r3, r4)
         models.insertar_reg_detalle(r1, r2, r3, r4)
-    return url_for('sale')
+    canasta = []
+    totalPago = 0
+    return render_template("/types/sale.html", datos = canasta, tp = totalPago, type = ventaMsg)
             
 @app.route("/factura")
 def invoice():
