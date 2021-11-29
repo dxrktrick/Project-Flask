@@ -1,9 +1,6 @@
 from connection import obtener_conexion
 
-#Consultas extraordinarias.
-
 #Consultas de Base de Datos
-
 #Consultas de ventas.
 def tam_fact():
     conexion = obtener_conexion()
@@ -79,22 +76,14 @@ def registros_cli():
     cur.execute("SELECT * FROM cliente")
     reg = cur.fetchall()
     return reg
-'''
-#Consultas Extras - Foraneas.
-def registros_cat_ext():
+
+def registros_facts():
     conexion = obtener_conexion()
     cur = conexion.cursor()
-    cur.execute("SELECT * FROM categoria where categoria.id_categoria")
+    cur.execute("SELECT * FROM factura")
     reg = cur.fetchall()
     return reg
 
-def registros_prov_ext():
-    conexion = obtener_conexion()
-    cur = conexion.cursor()
-    cur.execute("SELECT * FROM proveedor where proveedor.id_proveedor")
-    reg = cur.fetchall()
-    return reg
-'''
 #Alta de registros.
 def insertar_reg_emp(a, b, c, d, e, f, g):
     conexion = obtener_conexion()

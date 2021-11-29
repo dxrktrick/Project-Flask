@@ -221,7 +221,9 @@ def cashout():
             
 @app.route("/factura")
 def invoice():
-    return render_template("/types/invoice.html")
+    tx = 'Facturas'
+    reg = models.registros_facts()
+    return render_template("/types/invoice.html", type = tx, valores = reg)
 
 #Formularios de Registro -------------------------------------------------------.
 @app.route("/formAddEmpleados")

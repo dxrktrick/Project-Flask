@@ -25,7 +25,7 @@ id_producto int identity (1,1) primary key,
 categoria int not null,
 proveedor int not null,
 nombre varchar(40) not null,
-precio float(3) not null,
+precio float not null,
 cantidad int not null,
 existencia bit not null,
 CONSTRAINT fk_categoria FOREIGN KEY (categoria) REFERENCES categoria (id_categoria),
@@ -68,30 +68,44 @@ CONSTRAINT fk_producto FOREIGN KEY (producto) REFERENCES producto (id_producto)
 );
 
 select * from producto
-select count('') from producto
-select count('') from detalleVenta
 select * from detalleVenta
 select * from factura
 select * from categoria
 select * from empleado
+select * from proveedor
+select * from cliente
 
-insert into empleado (nombre, apellido_p, edad, estado, telefono, pass, email) values ('Gustavo', 'Carreola', 22, 'Mexico', 7121552233, 'guuz123')
-insert into empleado (nombre, apellido_p, edad, estado, telefono, pass, email) values ('Eric', 'Vazquez', 22, 'Mexico', 7121630599, 'eric123')
 
-insert into producto (categoria, proveedor, nombre, precio, cantidad, existencia) values (1, 1, 'Nokia', 1200.35, 3, 1)
+select count('') from producto
+select count('') from detalleVenta
+--Categoria--
+INSERT INTO categoria (nombre) VALUES ('Tecnolog�a'),('Accesorios'),('Papeler�a')
 
-insert into factura (fecha, serie, empleado, cliente, monto, existencia) values (getdate(), 100001, 1, 1, 1234, 1)
-insert into factura (fecha, serie, empleado, cliente, monto, existencia) values ('2021-11-28', 100002, 1, 1, 222, 1)
+--Proveedor--
+INSERT INTO proveedor (nombre, dni, nacionalidad, telefono) VALUES ('Oficimundo', '14556789B', 'Mexicana', 7122366659)
+INSERT INTO proveedor (nombre, dni, nacionalidad, telefono) VALUES  ('HP', '22473FB7A', 'Mexicana', 7121449800)
+INSERT INTO proveedor (nombre, dni, nacionalidad, telefono) VALUES ('Dell', '4468UY89W', 'Mexicana', 7122990467)
+INSERT INTO proveedor (nombre, dni, nacionalidad, telefono) VALUES ('Net-Comm', '1892VB34M', 'Estadounidense', 8080945601)
+INSERT INTO proveedor (nombre, dni, nacionalidad, telefono) VALUES ('Alco', '9901MN35Y', 'Colombiana', 5766890357)
 
-alter table empleado ADD email varchar(80)
+--Empleado--
+INSERT INTO empleado (nombre, apellido_p, edad, estado, telefono, email, pass)
+VALUES ('Gustavo', 'Carreola', '21', 'M�xico', 7121552233, 'guuz.t13@gmail.com', 'guuz123'),
+('Eric', 'V�zquez', '21', 'M�xico', 7121630599, 'ericvazquezdejesus25@gmail.com', 'eric123')
 
-update empleado set email = 'guuz.t13@gmail.com' where nombre='Gustavo'
-update empleado set email = 'evdj@gmail.com' where nombre='Eric'
+--Cliente--
+INSERT INTO cliente (nombre, apellido_p, estado, telefono)
+VALUES ('Marcos', 'Soto', 'Mexico', 7122645368),
+('Daniela', 'Linares', 'Mexico', 7124780233),
+('Alejandra', 'Flores', 'Morelos', 7233890455),
+('Lesly', 'Urbina', 'Mexico', 7323488901),
+('Rodrigo', 'Prospero', 'Mexicana', 7125567701)
 
-update empleado set nombre = 'xd' where id_empleado = '1'
+--Producto--
+INSERT INTO producto (categoria, proveedor, nombre, precio, cantidad, existencia)
+VALUES (1, 16, 'Laptop HP Pavilion X360', 18359.26, 1, 5),
+(2, 19, 'Mouse Razer Viper', 1542.25, 1, 15),
+(2, 18, 'Audifonos Hyper Cloud Stinger', 899.0, 1, 15),
+(3, 17, 'Paquete de hojas blancas (t/c)', 119.0, 2, 100),
+(3, 11, 'Colores Norma (24 pzas)', 124.9, 3, 60)
 
-update producto set precio = 12.10 where id_producto = '1'
-
-delete from empleado where id_empleado = '5'
-
-drop table producto

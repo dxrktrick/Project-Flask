@@ -1,0 +1,58 @@
+	{% extends "layout.html" %}
+	{% block content %}
+
+        <section class="main container-fluid">
+            <div class="row g-2">
+                <div class="col-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">{{type}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">Registros de {{type}}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row g-2">
+                <div class="col-12">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Registros consultados desde Base de Datos</h1>
+                        <p class="lead">Noviembre, 2021 / WikiPartners</p>
+                        <hr class="my-3">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Identifier</th>
+                                        <th>Date</th>
+                                        <th>Serie</th>
+                                        <th>Employee</th>
+                                        <th>Client</th>
+                                        <th>Total Price</th>
+                                        <th>Existence</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for info in valores %}
+                                    <tr>
+                                        <td>{{info.0}}</td>
+                                        <td>{{info.1}}</td>
+                                        <td>{{info.2}}</td>
+                                        <td>{{info.3}}</td>
+                                        <td>{{info.4}}</td>
+                                        <td>{{info.5}}</td>
+                                        <td>{{info.6}}</td>
+                                        <td><a class="alert-link" href="/eliminar{{type}}/{{info.0}}">Eliminar</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody> 
+                            </table>
+                        </div>
+                        <hr class="my-3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endblock %}
