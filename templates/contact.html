@@ -1,0 +1,78 @@
+	{% extends "layout.html" %}
+	{% block content %}
+
+        <section class="main container-fluid">
+            <div class="row g-2">
+                <div class="col-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">Inicio</li>
+                            <li class="breadcrumb-item active" aria-current="page">Contácto</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <img src="{{url_for('static', filename='img/img1.jpg')}}" class="card-img-top" alt="...">
+                                </div>
+                            </div>
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <h1 class="display-4">Gustavo</h1>
+                                    <p class="lead">
+                                        Carreola Aniseto.
+                                    </p>
+                                    <hr>
+                                    <p class="lead">
+                                        guuz.t13@gmail.com
+                                    </p>
+                                    <a class="btn btn-sm btn-outline-primary" href="https://www.facebook.com/guuzt13/" role="button">Facebook</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <p class=" my-4 post-contenido text-justify">
+                            <p class="lead"> Co-creador de proyecto WikiPartners'.</p>
+                        <p class="lead">
+                            <a class="btn btn-sm btn-outline-success" href="{{url_for('help')}}" role="button">Leer más</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <img src="{{url_for('static', filename='img/img2.jpg')}}" class="card-img-top" alt="...">
+                                </div>
+                            </div>
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <h1 class="display-4">Eric</h1>
+                                    <p class="lead">
+                                        Vázquez De Jesús.
+                                    </p>
+                                    <hr>
+                                    <p class="lead">
+                                        eric_25_06@outlook.com
+                                    </p>
+                                    <a class="btn btn-sm btn-outline-primary" href="https://www.facebook.com/profile.php?id=100006305926549" role="button">Facebook</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                            <p class="lead"> Co-creador de proyecto 'WikiPartners'.</p>
+                        <p>
+                            <a class="btn btn-sm btn-outline-success" href="{{url_for('help')}}" role="button">Leer más</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+	{% endblock %}

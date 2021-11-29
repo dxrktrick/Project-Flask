@@ -1,0 +1,39 @@
+	{% extends "layout.html" %}
+	{% block content %}
+
+        <section class="main container-fluid">
+            <div class="row g-2">
+                <div class="col-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">Inicio</li>
+                            <li class="breadcrumb-item active" aria-current="page">Ayuda</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="row g-2">
+                <div class="col-12">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Información de Ayuda</h1>
+                        <p class="lead">Noviembre, 2021 / WikiPartners</p>
+                        <hr class="my-4">
+                        <p class="lead">Información del Proyecto.</p>
+                        <hr class="my-4">
+                        <p class=" my-4 post-contenido text-justify">
+                        Desarrollar un Sistema Gestor de Base de Datos que lleve a cabo el registro de diversos productos relacionados
+                        con un sistema de ventas conceptualizado con 3 categorías (tecnología, accesorios y papelería), contando con
+                        diferentes tablas que mantengan la integridad de una base de datos relacional, es decir, que se organicen como:
+                        Empleados, Productos, Categorías, Proveedores, y Clientes; Agregando dos más como: Ventas, Facturación, y
+                        consecuentemente estas dos últimas tablas reflejando el sistema de canasta o punto de venta, interactuando con
+                        todos los datos, finalmente, todo este proyecto también desarrollado con IDE VS Code, y un framework llamado
+                        Flask (Pyhton y HTML), dando producto como un Punto de Venta a base de una página web.</p>
+                        <p class="lead">
+                        <a class="btn btn-sm btn-outline-secondary" href="https://alumnouaemex-my.sharepoint.com/:b:/g/personal/gcarreolaa001_alumno_uaemex_mx/Ee7VcagfNxBDn-cv_OwU19YBVr52QEeYNqwCj18-Y4sn3w?e=4ycT9Q" role="button">Leer más</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+	{% endblock %}

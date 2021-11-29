@@ -103,9 +103,9 @@ VALUES ('Marcos', 'Soto', 'Mexico', 7122645368),
 
 --Producto--
 INSERT INTO producto (categoria, proveedor, nombre, precio, cantidad, existencia)
-VALUES (1, 16, 'Laptop HP Pavilion X360', 18359.26, 1, 5),
-(2, 19, 'Mouse Razer Viper', 1542.25, 1, 15),
-(2, 18, 'Audifonos Hyper Cloud Stinger', 899.0, 1, 15),
-(3, 17, 'Paquete de hojas blancas (t/c)', 119.0, 2, 100),
-(3, 11, 'Colores Norma (24 pzas)', 124.9, 3, 60)
+VALUES (1, 16, 'Laptop HP Pavilion X360', 18359.26, 20, 5),
+(2, 19, 'Mouse Razer Viper', 1542.25, 20, 15),
+(2, 18, 'Audifonos Hyper Cloud Stinger', 899.0, 20, 15),
+(3, 17, 'Paquete de hojas blancas (t/c)', 119.0, 20, 100),
+(3, 11, 'Colores Norma (24 pzas)', 124.9, 30, 60)
 

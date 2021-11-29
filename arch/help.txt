@@ -15,4 +15,8 @@
 # -- url_for('nombreFuncion')
 
 # -- C o m a n d o s  d e  G i t
-# -- 
+# -- git clone direccionRepositorio #Para bajar el proyecto.
+# -- git add . #Subir el proyecto.
+# -- git commit -m "comentario" #Subir el cambio con nombre.
+# -- git push #subir el proyecto
+
